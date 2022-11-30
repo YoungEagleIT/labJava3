@@ -1,4 +1,4 @@
-package task1;
+package task1.store;
 
 import task1.util.Check;
 
@@ -15,7 +15,7 @@ public class History {
     public History() {
         checks = new ArrayList<>();
     }
-    public List<Check> getReceipts() {
+    public List<Check> getChecks() {
         return checks;
     }
 

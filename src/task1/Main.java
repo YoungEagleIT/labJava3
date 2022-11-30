@@ -1,8 +1,10 @@
-package task1.store;
+package task1;
 
-import task1.store.human.Customer;
-import task1.store.human.Product;
-import task1.store.service.StoreService;
+import task1.human.Customer;
+import task1.human.Product;
+import task1.service.StoreService;
+import task1.store.History;
+import task1.store.ProductStorage;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

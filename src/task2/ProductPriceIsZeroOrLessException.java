@@ -1,14 +1,14 @@
 package task2;
 
-public class PriceIsZeroOrLessException extends Exception {
-    public PriceIsZeroOrLessException() {
+public class ProductPriceIsZeroOrLessException extends Exception {
+    public ProductPriceIsZeroOrLessException() {
     }
 
-    public PriceIsZeroOrLessException(final String message) {
+    public ProductPriceIsZeroOrLessException(final String message) {
         super(message);
     }
 
-    public PriceIsZeroOrLessException(final String message, final Throwable cause) {
+    public ProductPriceIsZeroOrLessException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

@@ -1,4 +1,6 @@
-package task1.store.human;
+package task1.human;
+
+import java.util.Objects;
 
 public class Product {
     private String name;
@@ -39,5 +41,27 @@ public class Product {
 
     public void setCount(final long count) {
         this.count = count;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final Product product = (Product) o;
+        return Double.compare(product.price, price) == 0 && Objects.equals(name, product.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, price);
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", count=" + count +
+                '}';
     }
 }

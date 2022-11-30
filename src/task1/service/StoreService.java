@@ -1,25 +1,25 @@
-package task1.store.service;
+package task1.service;
 
 import task1.store.History;
 import task1.store.ProductStorage;
-import task1.store.human.Customer;
-import task1.store.human.Product;
-import task1.store.util.Check;
+import task1.human.Customer;
+import task1.human.Product;
+import task1.util.Check;
 
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 public class StoreService {
-    private final ProductStorage productStorage;
-    private final History history;
+    protected final ProductStorage storage;
+    protected final History history;
 
-    public StoreService(final ProductStorage productStorage, final History history) {
-        this.productStorage = productStorage;
+    public StoreService(final ProductStorage storage, final History history) {
+        this.storage = storage;
         this.history = history;
     }
 
     public Product getProductByName(final String name) {
-        return productStorage.getProducts().stream()
+        return storage.getProducts().stream()
                 .filter(e -> e.getName().equals(name)).findFirst()
                 .orElseThrow(() -> new RuntimeException("Cannot find product with this name(\"" + name + "\")"));
     }
@@ -45,16 +45,17 @@ public class StoreService {
         }
 
         if (product.getCount() == ZERO) {
-            productStorage.setProducts(productStorage.getProducts().stream()
+            storage.setProducts(storage.getProducts().stream()
                     .filter(e -> !e.getName().equals(nameProduct)).collect(Collectors.toList()));
         }
 
-        check.setProduct(new Product(product.getName(), product.getPrice(), count));
-        check.setTime(LocalDateTime.now());
-
-        history.getReceipts().add(check);
+        history.getChecks().add(check);
 
         customer.setMoney(customer.getMoney() - totalMoney);
+
+        check.setProduct(new Product(product.getName(), product.getPrice(), count));
+        check.setTime(LocalDateTime.now());
+        check.setCustomer(customer);
 
         return check;
     }

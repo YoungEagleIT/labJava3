@@ -1,4 +1,4 @@
-package task1.store.human;
+package task1.human;
 
 public class Seller {
     private String name;
